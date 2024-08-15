@@ -95,7 +95,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;        
+        gap: 0.5rem;
         border-radius: 5px;
       }
       h2 {
@@ -135,7 +135,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         background-position: center;
       }
       .off {
-        background-image: url(https://cdn-icons-png.flaticon.com/128/5720/5720465.png);        
+        background-image: url(https://cdn-icons-png.flaticon.com/128/5720/5720465.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -179,7 +179,12 @@ const char index_html[] PROGMEM = R"rawliteral(
         background-position: center;
         border-radius: 5px;
       }
-       @media (max-width: 768px) {
+
+      #room {
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 768px) {
         header {
           flex-direction: column;
           justify-content: center;
@@ -256,16 +261,19 @@ const char index_html[] PROGMEM = R"rawliteral(
             response.json().then((data) => {
               console.log("Status:", data);
               let button = document.getElementById("powerbtn");
+              let statusMessage = document.getElementById("status-message");
               if (data.status === true) {
                 //DESLIGAR
                 button.onclick = powerOff; // Altera a função para desligar
                 button.classList.remove("off");
                 button.classList.add("on");
-              } else if(data.status === false {
+                statusMessage.textContent = "Ar Ligado";
+              } else if (data.status === false) {
                 //LIGAR
                 button.onclick = powerOn; // Altera a função para ligar
                 button.classList.remove("on");
                 button.classList.add("off");
+                statusMessage.textContent = "Ar Desligado";
               }
             });
           } else {
@@ -289,7 +297,10 @@ const char index_html[] PROGMEM = R"rawliteral(
       <section class="control">
         <div class="temperature-display">
           <div id="header">
-            <h2 id="place">Sala 1</h2>
+            <div id="room">
+              <h2 id="place">Sala 1</h2>
+              <spam id="status-message">Ligado</spam>
+            </div>
             <img
               id="ice"
               src="https://cdn-icons-png.flaticon.com/128/2530/2530064.png"

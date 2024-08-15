@@ -81,7 +81,7 @@ void WebServer::handleTemperature() {
 
     String response = "Temperatura recebida: " + String(temperature) + "°C";
     uint64_t command = generateCoolixCommand(temperature);
-    //irsend.sendCOOLIX(command);
+    irsend.sendCOOLIX(command);
     Serial.printf("\nLigando máquina com temperatura em %d °C.", temperature);
     server.send(200, "text/html", response);
   } else {

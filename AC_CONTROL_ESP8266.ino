@@ -12,8 +12,8 @@ ESP8266WiFiMulti WiFiMulti;
 
 WebServer webServer(WEBSERVER_PORT, AC_COMMAND_ON, AC_COMMAND_OFF);
 
-const char *ssid = "Fibratell_Sala_2.4G";     // Wireless network ssid
-const char *password = "044gomes";  // Wireless password
+const char *ssid = "your ssid";     // Wireless network ssid
+const char *password = "your password";  // Wireless password
 
 void setup() {
 #if ESP8266
